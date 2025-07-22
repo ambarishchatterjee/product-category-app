@@ -1,0 +1,63 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-5">
+  <h1 class="mb-4"><%= product._id ? 'Edit' : 'Add' %> Product</h1>
+
+ <% if (success && success.length > 0) { %>
+  <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
+    <%= success %>
+  </div>
+<% } %>
+
+<% if (error && error.length > 0) { %>
+  <div class="alert alert-danger text-center alert-dismissible fade show" role="alert">
+    <%= error %>
+  </div>
+<% } %>
+
+  <form action="<%= formAction %>" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label class="form-label">Product Name</label>
+      <input type="text" name="name" class="form-control" value="<%= product.name || '' %>" required>
+    </div>
+
+    <div class="mb-3">
+  <label class="form-label">Category</label>
+  <select name="category" class="form-select" required>
+    <% categories.forEach(cat => { %>
+      <option value="<%= cat %>" <%= (product.category === cat) ? 'selected' : '' %>>
+        <%= cat %>
+      </option>
+    <% }) %>
+  </select>
+</div>
+
+
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea name="description" class="form-control" rows="4" required><%= product.description || '' %></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Product Image</label>
+      <% if (product.image) { %>
+        <div><img src="<%= product.image %>" width="120"></div>
+      <% } %>
+      <input type="file" name="image" class="form-control" <%= product._id ? '' : 'required' %>>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/admin/products" class="btn btn-secondary">Back</a>
+  </form>
+</div>
+<script>
+  setTimeout(() => {
+    document.querySelectorAll('.alert').forEach(el => {
+      el.classList.remove('show');
+      el.classList.add('fade');
+      setTimeout(() => el.remove(), 500); // remove after fade
+    });
+  }, 5000); // 2 seconds
+</script>
+<%- include('../partials/footer') %>

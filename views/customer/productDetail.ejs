@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-5">
+  <h1 class="mb-4"><%= product.name %></h1>
+
+  <img src="<%= product.image %>" class="img-fluid mb-4" style="max-height: 400px; object-fit: cover;">
+
+  <h5>Category: <%= product.category.name %></h5>
+  <p class="alert alert-warning"><%= product.category %></p>
+  <p><%= product.description %></p>
+
+  <a href="/" class="btn btn-secondary">Back to Home</a>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-5">
+  <h1 class="mb-4"><%= category._id ? 'Edit' : 'Add' %> Category</h1>
+
+ <% if (success && success.length > 0) { %>
+  <div class="alert alert-success text-center alert-dismissible fade show" role="alert">
+    <%= success %>
+  </div>
+<% } %>
+
+<% if (error && error.length > 0) { %>
+  <div class="alert alert-danger text-center alert-dismissible fade show" role="alert">
+    <%= error %>
+  </div>
+<% } %>
+
+  <form action="<%= formAction %>" method="POST">
+    <div class="mb-3">
+      <label class="form-label">Category Name</label>
+      <input type="text" name="name" class="form-control" value="<%= category.name || '' %>" required>
+    </div>
+
+    <div class="mb-3">
+</div>
+
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/admin/categories" class="btn btn-secondary">Back</a>
+  </form>
+</div>
+<script>
+  setTimeout(() => {
+    document.querySelectorAll('.alert').forEach(el => {
+      el.classList.remove('show');
+      el.classList.add('fade');
+      setTimeout(() => el.remove(), 500); // remove after fade
+    });
+  }, 500); // 2 seconds
+</script>
+<%- include('../partials/footer') %>

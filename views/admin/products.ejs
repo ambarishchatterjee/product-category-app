@@ -1,0 +1,51 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-5">
+  <h1 class="mb-4">Manage Products</h1>
+
+ <% if (success && success.length > 0) { %>
+  <div class="alert alert-success text-center"><%= success %></div>
+<% } %>
+
+<% if (error && error.length > 0) { %>
+  <div class="alert alert-danger text-center"><%= error %></div>
+<% } %>
+
+
+  <a href="/admin/products/add" class="btn btn-success mb-3">Add New Product</a>
+
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.forEach(product => { %>
+        <tr>
+          <td><img src="<%= product.image %>" width="80"></td>
+          <td><%= product.name %></td>
+          <td><%= product.category %></td>
+
+          <td>
+            <a href="/admin/products/edit/<%= product._id %>" class="btn btn-warning btn-sm">Edit</a>
+            <form action="/admin/products/delete/<%= product._id %>" method="POST" class="d-inline">
+              <button class="btn btn-danger btn-sm" onclick="return confirm('Delete this product?')">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<script>
+  setTimeout(() => {
+    const flashMessages = document.querySelectorAll('.alert');
+    flashMessages.forEach(msg => msg.remove());
+  }, 5000); // 2000ms = 2 seconds
+</script>
+
+<%- include('../partials/footer') %>

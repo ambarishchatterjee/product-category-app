@@ -1,0 +1,57 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-5">
+  <h1 class="mb-4 text-center">Admin Dashboard</h1>
+
+  <% if (success && success.length > 0) { %>
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+      <%= success %>
+    </div>
+  <% } %>
+
+  <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-4">
+      <div class="card text-center shadow">
+        <div class="card-body">
+          <h5 class="card-title">Total Products</h5>
+          <h2 class="display-4"><%= count %></h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center shadow">
+        <div class="card-body">
+          <h5 class="card-title">Total Categories</h5>
+          <h2 class="display-4"><%= countCat %></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <a href="/admin/products" class="btn btn-primary me-3">Manage Products</a>
+    <a href="/admin/categories" class="btn btn-warning me-3">Manage Categories</a>
+    <!-- <a href="/admin/products/add" class="btn btn-success me-3">Add Product</a>
+    <a href="/" class="btn btn-secondary">View Website</a>
+    <a href="/admin/products/deleted" class="btn btn-outline-danger">View Deleted Products</a> -->
+
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
+
+<script>
+  setTimeout(() => {
+    document.querySelectorAll('.alert').forEach(el => {
+      el.classList.remove('show');
+      el.classList.add('fade');
+      setTimeout(() => el.remove(), 500);
+    });
+  }, 500);
+</script>
