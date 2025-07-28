@@ -61,3 +61,12 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
+
+
+function transformToObjects(numberArray) {
+    let newArr = []
+    numberArray.map((number)=> newArr.push({val:number}))
+    return newArr
+}
+
+transformToObjects([1,2,3])
