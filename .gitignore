@@ -11,7 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
-gi.env
+.env
+*.env
+env
 
 # Editor directories and files
 .vscode/*
@@ -23,3 +25,6 @@ gi.env
 *.njsproj
 *.sln
 *.sw?
+
+# env files (can opt-in for committing if needed)
+.env*
