@@ -11,7 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-.env
+#.env
 *.env
 env
 
@@ -27,4 +27,4 @@ env
 *.sw?
 
 # env files (can opt-in for committing if needed)
-.env*
+#.env*
